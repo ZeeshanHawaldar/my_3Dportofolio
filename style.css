@@ -609,7 +609,11 @@ span {
   width: 80%;
 }
 
-/*contact css design*/
+
+
+/* ============================
+   Contact Section Design
+=============================== */
 .contact {
   min-height: auto;
   padding-bottom: 7rem;
@@ -622,67 +626,116 @@ span {
 }
 
 .contact form .input-box {
-  position: relative;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .contact form .input-box .input-field {
-  position: relative;
   width: 49%;
   margin: 0.8rem 0;
-}
-
-.contact form .input-box .input-field input,
-.contact form .textarea-field textarea {
-  width: 100%;
-  height: 100%;
-  padding: 1.5rem;
-  font-size: 1.6rem;
-  color: var(--text-color);
-  background: transparent;
-  border-radius: 0.6rem;
-  border: 0.2rem solid var(--main-color);
-}
-
-.contact form .input-box .input-field input::placeholder,
-.contact form .textarea-field textarea::placeholder {
-  color: var(--text-color);
-}
-
-.contact form .focus {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: var(--second-bg-color);
-  border-radius: 0.6rem;
-  z-index: -1;
-  transition: 0.5s;
-}
-
-.contact form .input-box .input-field input:focus ~ .focus,
-.contact form .input-box .input-field input:valid ~ .focus,
-.contact form .textarea-field textarea:focus ~ .focus,
-.contact form .textarea-field textarea:valid ~ .focus {
-  width: 100%;
+  position: relative;
 }
 
 .contact form .textarea-field {
-  position: relative;
+  width: 100%;
   margin: 0.8rem 0 2.7rem;
   display: flex;
+  position: relative;
 }
 
 .contact form .textarea-field textarea {
   resize: none;
+  min-height: 120px;
 }
 
+/* ============================
+   Default Blue Border
+=============================== */
+.contact form .input-box .input-field input,
+.contact form .textarea-field textarea {
+  width: 100%;
+  padding: 1.2rem 1rem;
+  font-size: 1.6rem;
+  color: var(--text-color);
+  background: transparent;
+  border-radius: 0.6rem;
+  border: 0.2rem solid var(--main-color); /* Original blue */
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+/* Keep blue border on focus */
+.contact form .input-box .input-field input:focus,
+.contact form .textarea-field textarea:focus {
+  border-color: var(--main-color);
+}
+
+/* ============================
+   Floating Label Style
+=============================== */
+.contact form .input-box .input-field label,
+.contact form .textarea-field label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: var(--text-color);
+  pointer-events: none;
+  background-color: var(--bg-color);
+  padding: 0 0.4rem;
+  transition: 0.3s ease all;
+}
+
+/* Label floats up when focused or has text */
+.contact form .input-box .input-field input:focus + label,
+.contact form .input-box .input-field input:not(:placeholder-shown) + label,
+.contact form .textarea-field textarea:focus + label,
+.contact form .textarea-field textarea:not(:placeholder-shown) + label {
+  top: -0.8rem;
+  left: 0.8rem;
+  font-size: 1.2rem;
+  color: var(--main-color);
+}
+
+/* Hide placeholder text (we use floating labels) */
+.contact form .input-box .input-field input::placeholder,
+.contact form .textarea-field textarea::placeholder {
+  opacity: 0;
+}
+
+/* ============================
+   Red Border for Errors (JS Controlled)
+=============================== */
+.input-error {
+  border-color: red !important;
+}
+
+/* ============================
+   Submit Button
+=============================== */
 .contact form .btn-box.btns .btn {
   cursor: pointer;
 }
+
+/* ============================
+   Error Message
+=============================== */
+.error-message {
+  color: red;
+  font-size: 1.4rem;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  display: none; /* shown only after validation */
+}
+
+
+
+
+
 
 /*footer css design*/
 .footer {
@@ -779,13 +832,15 @@ span {
   }
 }
 
-@media(max-width: 768px) {
-
- .home {
+@media (max-width: 768px) {
+  .home {
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* center vertically */
     text-align: center;
-    padding: 1rem;
+    padding: 2rem 4%; /* reduced from 10rem or 0 to make it consistent */
+    min-height: 100vh; /* take full screen height */
+    box-sizing: border-box;
   }
 
   .home-content {
@@ -797,7 +852,7 @@ span {
     height: auto;
   }
 
-.home-conten h1{
+  .home-content h1 {
     font-size: 1.8rem; /* Adjust to fit nicely */
     line-height: 1.2;
     word-wrap: break-word;
@@ -818,7 +873,6 @@ span {
     background: var(--bg-color);
     padding-right: 1rem;
     padding-left: 1rem;
-  
   }
 
   #menu-icon {
@@ -865,6 +919,7 @@ span {
     opacity: 0.6;
   }
 }
+
 
 @media(max-width: 520px) {
   html {
