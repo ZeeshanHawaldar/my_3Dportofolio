@@ -89,7 +89,7 @@ section {
   display: flex;
   align-items: center;
   padding: 0 9%;
-  background: url("about.png") no-repeat;
+  background: url("about-img") no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -897,4 +897,5 @@ span {
 }
 
 /*page load animation*/
+
 
