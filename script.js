@@ -1,4 +1,6 @@
-// Select elements
+// ==================
+// Navbar & Scroll
+// ==================
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 let sections = document.querySelectorAll('section');
@@ -36,25 +38,71 @@ window.onscroll = () => {
   navbar.classList.remove('active');
 };
 
+// ==================
+// EmailJS Init
+// ==================
+(function () {
+  emailjs.init("dzsHnJ_N8dtvyKicT"); // Replace with your EmailJS Public Key
+})();
 
-//submit contact details
-(function(){
-    emailjs.init("dzsHnJ_N8dtvyKicT"); // Replace with your EmailJS Public Key
-  })();
+// ==================
+// Contact Form Submit + Validation
+// ==================
+const contactForm = document.getElementById('contact-form');
+const requiredFields = contactForm.querySelectorAll('[required]');
 
-  document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+// Create a single error message below the form
+let errorMessage = document.createElement('div');
+errorMessage.classList.add('error-message');
+errorMessage.textContent = "Please fill mandatory fields";
+errorMessage.style.display = 'none';
+contactForm.appendChild(errorMessage);
 
-    emailjs.sendForm('service_3jeilla', 'template_4zajjcq', this)
-      .then(function() {
-        alert('Message sent successfully!');
-      }, function(error) {
-        console.log('FAILED...', error);
-        alert('Failed to send message. Please try again.');
-      });
+contactForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  let hasError = false;
+
+  requiredFields.forEach(field => {
+    if (!field.value.trim()) {
+      field.classList.add('input-error'); // turns red
+      hasError = true;
+    } else {
+      field.classList.remove('input-error'); // stays blue
+    }
   });
 
-  document.getElementById("read-more-link").addEventListener("click", function() {
+  if (hasError) {
+    errorMessage.style.display = 'block';
+    return; // Don't send if there are errors
+  } else {
+    errorMessage.style.display = 'none';
+  }
+
+  // Send email if all required fields are filled
+  emailjs.sendForm('service_3jeilla', 'template_4zajjcq', this)
+    .then(function () {
+      alert('Message sent successfully!');
+      contactForm.reset();
+    }, function (error) {
+      console.log('FAILED...', error);
+      alert('Failed to send message. Please try again.');
+    });
+});
+
+// Remove red border live when user types
+requiredFields.forEach(field => {
+  field.addEventListener('input', () => {
+    if (field.value.trim()) {
+      field.classList.remove('input-error');
+    }
+  });
+});
+
+// ==================
+// Read More Toggle
+// ==================
+document.getElementById("read-more-link").addEventListener("click", function () {
   let dots = document.getElementById("dots");
   let moreText = document.getElementById("more-text");
   let linkText = document.getElementById("read-more-link");
