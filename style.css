@@ -81,7 +81,7 @@ body {
 }
 
 #menu-icon {
-  font-size: 3.6rem;
+  font-size: 4rem;
   color: var(--text-color);
   cursor: pointer;
   display: none;
@@ -103,7 +103,7 @@ section {
   display: flex;
   align-items: center;
   padding: 0 9%;
-  background: url("./about.png") no-repeat;
+   background: url('./about.png') no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -297,6 +297,13 @@ h1, .text-animate h3 {
   opacity: 0.8;
 }
 
+.home img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right;
+}
+
 /*about section css*/
 .about {
   display: flex;
@@ -373,8 +380,25 @@ span {
   color: white;
 }
 
+#read-more-link {
+  font-size: 1.2rem;      /* Makes it larger */
+  color:var(--main-color);       /* Any color you want (orange here) */
+  font-weight: bold;    /* Optional: make it bold */
+  text-decoration: none; /* Remove underline */
+  cursor: pointer;      /* Make it look clickable */
+}
 
+/* Optional hover effect */
+#read-more-link:hover {
+  color: #ff5722;       /* Changes color when hovered */
+}
 
+/*#read-more-link{
+  color: (var(--main-color));
+  font-size: 1rem;
+}*/
+
+/*Education section implement*/
 .education {
   display: flex;
   align-items: center;
@@ -383,6 +407,9 @@ span {
   min-height: auto;
   padding-bottom: 5rem;
 }
+
+
+
 
 .education .education-row {
   display: flex;
@@ -876,42 +903,52 @@ span {
   }
 
   #menu-icon {
+    font-size: 40px; 
     display: block;
     cursor: pointer;
   }
 
-  .navbar {
-    position: absolute;
-    top: 100%;
-    left: -100%;
-    width: 100%;
-    padding: 1rem 4%;
-    background: var(--main-color);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: left 0.3s ease;
-  }
+ .navbar {
+  position: absolute;
+  top: 100%;
+  left: -100%;
+  width: 100%;
+  padding: 1rem 4%;
+  background: var(--main-color);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: left 0.3s ease;
+}
 
-  .navbar.active {
-    left: 0;
-  }
+.navbar.active {
+  left: 0;
+}
 
-  .navbar a {
-    display: block;
-    font-size: 2rem;
-    margin: 2rem 0;
-    opacity: 0;
-    transform: translateX(-20rem);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
+.navbar a {
+  display: block;
+  font-size: 2rem;
+  margin: 2rem 0;
+  opacity: 0;
+  color: var(--text-color); /* default color */
+  text-decoration: none;
+  transform: translateX(-20rem);
+  transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease;
+}
 
-  .navbar.active a {
-    transform: translateX(0);
-    opacity: 1;
-  }
+/* Show links when menu is active */
+.navbar.active a {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Black color for active link */
+.navbar a.active {
+  color:var(--second-bg-color);
+}
+
 
   .home-imgHover {
     pointer-events: none;
@@ -1019,4 +1056,3 @@ span {
 }
 
 /*page load animation*/
-
